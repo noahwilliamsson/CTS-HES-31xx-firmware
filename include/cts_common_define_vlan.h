@@ -1,0 +1,13 @@
+#ifndef _CTS_COMMON_DEFINE_VLAN_H_
+#define _CTS_COMMON_DEFINE_VLAN_H_
+
+
+// type of VLAN mechanism
+#define CTS_COM_VLAN_TYPE_NONE						0
+#define CTS_COM_VLAN_TYPE_PORT_BASED				1
+#define CTS_COM_VLAN_TYPE_802_1_Q					2
+#define CTS_COM_VLAN_TYPE_PORT_ISOLATION			3
+#define CTS_COM_VLAN_TYPE_BYPASS_CTAG				4
+
+
+#endif /* _CTS_COMMON_DEFINE_VLAN_H_ */

@@ -1,0 +1,130 @@
+# VERSION 5024 6000
+configure
+ip address dhcp
+ip igmp snooping
+ip igmp snooping aging-time 3000
+ip igmp snooping extra-response-time 0
+ip igmp snooping immediate-leave
+management telnet
+no ntp
+ntp server1 0.0.0.0
+ntp server2 0.0.0.0
+ntp syn-interval 8
+ntp time-zone 0
+no qos
+qos dscp-map 0-63 0
+no qos queuing-mode
+qos queue-weighted 1:2:4:8
+qos 802.1p-map 0-7 0
+no qos remarking dscp
+qos remarking dscp Q0 0
+qos remarking dscp Q1 0
+qos remarking dscp Q2 0
+qos remarking dscp Q3 0
+no qos remarking 802.1p
+qos remarking 802.1p Q0 0
+qos remarking 802.1p Q1 0
+qos remarking 802.1p Q2 0
+qos remarking 802.1p Q3 0
+qos management-priority 0
+no snmp-server community
+snmp-server community public
+active
+description Default_Account
+level rw
+exit
+snmp-server community admin
+active
+description Default_Account
+level admin
+exit
+snmp-server trap-type all
+mac address-table aging-time 300
+switch sfp polling
+switch statistics polling
+user name admin
+level admin
+active
+description Default_Account
+exit
+vlan dot1q-vlan 1
+name Default_VLAN
+exit
+vlan dot1q-vlan 90
+name Management
+exit
+vlan dot1q-vlan
+vlan management-vlan 90 management-port 9
+no vlan qinq-vlan
+no vlan qinq-vlan pass-through-mode
+vlan qinq-vlan pass-through-vlan 1
+no vlan qinq-vlan isp-port
+vlan qinq-vlan stag-ethertype 9100
+vlan qinq-vlan stag-priority 0
+vlan qinq-vlan stag-vid 1
+interface 1-9
+no shutdown
+exit
+interface 1-8
+auto-negotiation
+exit
+interface 9
+speed auto_sense
+exit
+interface 1-8
+speed 1000
+exit
+interface 1-8
+duplex full
+exit
+interface 1-9
+no flowcontrol
+exit
+interface 1-8
+loop-detection
+exit
+interface 1-9
+qos default-class 0
+exit
+interface 1-9
+no qos rate-limit ingress
+exit
+interface 1-9
+no qos rate-limit egress
+exit
+interface 1-9
+qos user-priority 0
+exit
+interface 1-9
+security storm-protection
+exit
+interface 1-9
+security storm-protection broadcast
+exit
+interface 1-9
+no security storm-protection multicast
+exit
+interface 1-9
+security storm-protection rates 256
+exit
+interface 1-9
+no security storm-protection unknown-multicast
+exit
+interface 1-9
+no security storm-protection unknown-unicast
+exit
+interface 1-9
+vlan dot1q-vlan access-vlan 1
+exit
+interface 1-9
+vlan dot1q-vlan trunk-vlan 1
+exit
+interface 9
+vlan dot1q-vlan trunk-vlan 90
+exit
+interface 1-8
+vlan dot1q-vlan mode access
+exit
+interface 9
+vlan dot1q-vlan mode trunk native
+exit

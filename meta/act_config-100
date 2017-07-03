@@ -1,0 +1,162 @@
+# VERSION 5024 6000
+configure
+ip address dhcp
+ip dhcp snooping
+ip dhcp snooping dhcp-server 9
+ip igmp snooping
+ip igmp snooping aging-time 3000
+ip igmp snooping immediate-leave
+loop-detection
+loop-detection unlock-interval 10
+management telnet
+ntp
+ntp server1 172.18.0.2
+ntp server2 0.0.0.0
+ntp syn-interval 1440
+ntp time-zone 110
+no qos
+qos dscp-map 0-63 0
+no qos queuing-mode
+qos queue-weighted 1:2:4:8
+qos 802.1p-map 0-7 0
+no qos remarking dscp
+qos remarking dscp Q0 0
+qos remarking dscp Q1 0
+qos remarking dscp Q2 0
+qos remarking dscp Q3 0
+no qos remarking 802.1p
+qos remarking 802.1p Q0 0
+qos remarking 802.1p Q1 0
+qos remarking 802.1p Q2 0
+qos remarking 802.1p Q3 0
+qos management-priority 0
+no snmp-server community
+snmp-server community atria@hes
+active
+description Default_Account
+level admin
+exit
+snmp-server community act@tca$hes
+active
+description Default_Account
+level rw
+exit
+snmp-server trap-destination 1
+active
+community atria@hes
+destination 10.24.1.2
+exit
+snmp-server trap-destination 2
+active
+community atria@hes
+destination 10.100.210.5
+exit
+snmp-server trap-type all
+mac address-table aging-time 300
+switch sfp polling
+switch statistics polling
+user name admin
+password 9009le-11
+level admin
+active
+description Default_Account
+exit
+user name noc
+password @tr1@
+level rw
+active
+description Default_Account
+exit
+user name guest
+password guest
+level ro
+active
+description Default_Account
+exit
+vlan dot1q-vlan 2
+name 2
+exit
+vlan dot1q-vlan isolation
+vlan management-vlan 2 management-port 8,9
+no vlan qinq-vlan
+no vlan qinq-vlan pass-through-mode
+vlan qinq-vlan pass-through-vlan 1
+no vlan qinq-vlan isp-port
+vlan qinq-vlan stag-ethertype 9100
+vlan qinq-vlan stag-priority 0
+vlan qinq-vlan stag-vid 1
+interface 1-7
+shutdown
+exit
+interface 8,9
+no shutdown
+exit
+interface 1-8
+auto-negotiation
+exit
+interface 1-9 
+speed 100
+exit
+interface 1-8
+duplex full
+exit
+interface 1-9
+no flowcontrol
+exit
+interface 1-8
+loop-detection
+exit
+interface 1-9
+qos default-class 0
+exit
+interface 1-9
+no qos rate-limit ingress
+exit
+interface 1-9
+no qos rate-limit egress
+exit
+interface 1-9
+qos user-priority 0
+exit
+interface 1-8
+security storm-protection
+exit
+interface 9
+no security storm-protection
+exit
+interface 1-8
+security storm-protection broadcast
+exit
+interface 9
+no security storm-protection broadcast
+exit
+interface 1-9
+no security storm-protection multicast
+exit
+interface 1-8
+security storm-protection rates 8
+exit
+interface 9
+security storm-protection rates 256
+exit
+interface 1-9
+no security storm-protection unknown-multicast
+exit
+interface 1-9
+no security storm-protection unknown-unicast
+exit
+interface 1-7
+vlan dot1q-vlan access-vlan 1
+exit
+interface 8,9
+vlan dot1q-vlan access-vlan 2
+exit
+interface 8,9
+vlan dot1q-vlan trunk-vlan 2
+exit
+interface 1-8 
+vlan dot1q-vlan mode access
+exit
+interface 9 
+vlan dot1q-vlan mode trunk
+exit

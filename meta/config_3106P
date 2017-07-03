@@ -1,0 +1,157 @@
+# VERSION 5026 6000
+configure
+no ip dhcp snooping
+no ip dhcp snooping dhcp-server
+ip igmp snooping aging-time 3000
+ip igmp snooping immediate-leave
+no ip source
+no loop-detection
+mac address-table aging-time 300
+management telnet
+management web
+mirror destination 1
+no mirror mode
+no mirror source
+no ntp
+ntp server1 0.0.0.0
+ntp server2 0.0.0.0
+ntp syn-interval 1440
+ntp time-zone 0
+no qos
+qos dscp-map 0-63 0
+no qos queuing-mode
+qos queue-weighted 1:2:4:8
+qos 802.1p-map 0-7 0
+no qos remarking dscp
+no qos remarking vid
+no qos remarking 802.1p
+qos management-priority 0
+security storm-protection 
+security storm-protection rates 256
+snmp-server
+no snmp-server community
+snmp-server community public
+active
+description Default_Account
+level rw
+exit
+snmp-server community admin
+active
+description Default_Account
+level admin
+exit
+snmp-server trap-type all
+switch sfp polling
+switch statistics polling
+user name admin
+level admin
+active
+description Default_Account
+exit
+vlan dot1q-vlan 1
+name Default_VLAN
+exit
+vlan port-based
+vlan port-based port1vlan include-cpu 
+vlan port-based port2vlan include-cpu 
+vlan port-based port3vlan include-cpu 
+vlan port-based port4vlan include-cpu 
+vlan port-based port5vlan include-cpu 
+vlan port-based port6vlan include-cpu 
+vlan management-vlan 1 management-port 1-6
+no vlan qinq-vlan
+no vlan qinq-vlan pass-through-mode
+vlan qinq-vlan pass-through-vlan 1
+no vlan qinq-vlan isp-port
+vlan qinq-vlan management-stag 1
+vlan qinq-vlan stag-ethertype 9100
+interface 6
+no combo-mode
+exit
+interface 1-6
+no shutdown
+exit
+interface 1-5
+auto-negotiation
+exit
+interface 1-5 
+speed 1000
+exit
+interface 6
+speed auto-sense
+exit
+interface 1-5
+duplex full
+exit
+interface 1-6
+no flowcontrol
+exit
+interface 1-6
+qos rate-limit ingress 32
+exit
+interface 1-6
+qos rate-limit ingress 0 
+exit
+interface 1-6
+qos rate-limit egress 32
+exit
+interface 1-6
+qos rate-limit egress 0 
+exit
+interface 1-6
+no qos remarking dscp
+exit
+interface 1-6
+qos remarking dscp new-dscp 0
+exit
+interface 1-6
+qos user-priority 0
+exit
+interface 1-6
+vlan dot1q-vlan access-vlan 1
+exit
+interface 1-6
+vlan dot1q-vlan trunk-vlan 1
+exit
+interface 1-6 
+vlan dot1q-vlan mode access
+exit
+interface 2-6
+vlan port-based port1vlan 
+exit
+interface 1
+no vlan port-based port1vlan 
+exit
+interface 1,3-6
+vlan port-based port2vlan 
+exit
+interface 2
+no vlan port-based port2vlan 
+exit
+interface 1,2,4-6
+vlan port-based port3vlan 
+exit
+interface 3
+no vlan port-based port3vlan 
+exit
+interface 1-3,5,6
+vlan port-based port4vlan 
+exit
+interface 4
+no vlan port-based port4vlan 
+exit
+interface 1-4,6
+vlan port-based port5vlan 
+exit
+interface 5
+no vlan port-based port5vlan 
+exit
+interface 1-5
+vlan port-based port6vlan 
+exit
+interface 6
+no vlan port-based port6vlan 
+exit
+interface 1-6
+vlan qinq-vlan stag-vid 1
+exit
